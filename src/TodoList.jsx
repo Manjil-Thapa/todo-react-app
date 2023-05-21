@@ -1,4 +1,3 @@
-import * as React from 'react';
 import List from '@mui/material/List';
 import { useState } from 'react';
 import TodoItem from './TodoItem';
@@ -12,10 +11,19 @@ const todoSeeds = [
 
 function TodoList() {
   const [todos, setTodos] = useState(todoSeeds);
+
+  const removeTask = id => {
+    setTodos(prevTodos => {
+      return prevTodos.filter(task => {
+        return task.id !== id;
+      });
+    });
+  };
+
   return (
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {todos.map(todo => {
-        return <TodoItem todo={todo} key={todo.id} />;
+        return <TodoItem todo={todo} key={todo.id} remove={removeTask} />;
       })}
     </List>
   );

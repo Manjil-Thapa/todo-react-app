@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -7,14 +7,18 @@ import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import CommentIcon from '@mui/icons-material/Comment';
 
-function TodoItem({ todo }) {
+function TodoItem({ todo, remove }) {
   const labelId = `checkbox-list-label-${todo.id}`;
   /* this label id is there for accessibility */
+
+  const removeTask = () => {
+    remove(todo.id);
+  };
 
   return (
     <ListItem
       secondaryAction={
-        <IconButton edge='end' aria-label='comments'>
+        <IconButton edge='end' aria-label='comments' onClick={removeTask}>
           <CommentIcon />
         </IconButton>
       }
