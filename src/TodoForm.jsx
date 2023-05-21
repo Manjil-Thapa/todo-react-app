@@ -19,7 +19,8 @@ function TodoForm({ addTask }) {
       <form onSubmit={handleSubmit}>
         <TextField
           id='outlined-basic'
-          label='Task'
+          label='Add a new task'
+          placeholder='e.g. Pick up birthday present'
           variant='outlined'
           onChange={handleChange}
           value={task}

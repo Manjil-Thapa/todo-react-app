@@ -2,6 +2,7 @@ import List from '@mui/material/List';
 import { useState, useEffect } from 'react';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
+import { Box, Typography } from '@mui/material';
 
 const getInitialData = () => {
   const data = JSON.parse(localStorage.getItem('todos'));
@@ -38,24 +39,40 @@ function TodoList() {
 
   const addTask = task => {
     setTodos(prevTodos => {
-      return [...prevTodos, { id: 10, task: task, completed: false }];
+      return [
+        ...prevTodos,
+        { id: crypto.randomUUID(), task: task, completed: false },
+      ];
     });
   };
 
   return (
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-      {todos.map(todo => {
-        return (
-          <TodoItem
-            todo={todo}
-            key={todo.id}
-            removeItem={removeTask}
-            toggleItem={toggleTask}
-          />
-        );
-      })}
-      <TodoForm addTask={addTask} />
-    </List>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        m: 3,
+      }}
+    >
+      <Typography variant='h1' component='h2' sx={{ flexGrow: 1 }}>
+        TO-DOS
+      </Typography>
+      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        {todos.map(todo => {
+          return (
+            <TodoItem
+              todo={todo}
+              key={todo.id}
+              removeItem={removeTask}
+              toggleItem={toggleTask}
+            />
+          );
+        })}
+        <TodoForm addTask={addTask} />
+      </List>
+    </Box>
   );
 }
 
