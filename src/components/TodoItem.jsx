@@ -18,27 +18,28 @@ import Button from '@mui/material/Button';
 
 function TodoItem({ todo, removeItem, toggleItem, editItem }) {
   const labelId = `checkbox-list-label-${todo.id}`;
-  const [openDialog, setOpenDialog] = useState(false);
-
-  // const removeTask = () => {
-  //   removeItem(todo.id);
-  // };
-
-  const removeTask = () => {
-    setOpenDialog(true);
-  };
-
-  const handleDeleteConfirmation = () => {
-    setOpenDialog(false);
-    removeItem(todo);
-  };
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
 
   const toggleTask = () => {
     toggleItem(todo.id);
   };
 
+  const removeTask = () => {
+    setOpenDeleteDialog(true);
+  };
+
+  const handleDeleteConfirmation = () => {
+    setOpenDeleteDialog(false);
+    removeItem(todo);
+  };
+
   const editTask = () => {
-    editItem(todo.id);
+    setOpenEditDialog(true);
+  };
+  const handleEditConfirmation = () => {
+    setOpenEditDialog(false);
+    editItem(todo);
   };
 
   return (
@@ -61,10 +62,27 @@ function TodoItem({ todo, removeItem, toggleItem, editItem }) {
           sx={{ color: 'blue' }}
         />
       </ListItemButton>
+      <Dialog open={openEditDialog} onClose={() => setOpenEditDialog(false)}>
+        <DialogTitle>Edit Task</DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            {todo.task}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenEditDialog(false)}>Cancel</Button>
+          <Button onClick={handleEditConfirmation} color='primary'>
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
       <IconButton edge='end' aria-label='edit' onClick={editTask}>
         <EditIcon />
       </IconButton>
-      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+      <Dialog
+        open={openDeleteDialog}
+        onClose={() => setOpenDeleteDialog(false)}
+      >
         <DialogTitle>Confirm Deletion</DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
@@ -72,7 +90,7 @@ function TodoItem({ todo, removeItem, toggleItem, editItem }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
+          <Button onClick={() => setOpenDeleteDialog(false)}>Cancel</Button>
           <Button onClick={handleDeleteConfirmation} color='error' autoFocus>
             Delete
           </Button>
