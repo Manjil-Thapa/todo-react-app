@@ -5,6 +5,8 @@ import {
   ListItemText,
   IconButton,
   Checkbox,
+  DialogContent,
+  DialogContentText,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -16,8 +18,6 @@ import Button from '@mui/material/Button';
 
 function TodoItem({ todo, removeItem, toggleItem, editItem }) {
   const labelId = `checkbox-list-label-${todo.id}`;
-  /* this label id is there for accessibility */
-
   const [openDialog, setOpenDialog] = useState(false);
 
   // const removeTask = () => {
@@ -66,6 +66,11 @@ function TodoItem({ todo, removeItem, toggleItem, editItem }) {
       </IconButton>
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
         <DialogTitle>Confirm Deletion</DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            "{todo.task}" will be permantently deleted.
+          </DialogContentText>
+        </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
           <Button onClick={handleDeleteConfirmation} color='error' autoFocus>
