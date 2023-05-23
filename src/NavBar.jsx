@@ -21,7 +21,7 @@ function NavBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            TO-DOS
+            Best To-Do Application
           </Typography>
         </Toolbar>
       </AppBar>

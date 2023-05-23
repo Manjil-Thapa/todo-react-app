@@ -1,8 +1,8 @@
 import List from '@mui/material/List';
-import { useState, useEffect } from 'react';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
 import { Box, Typography } from '@mui/material';
+import { useState, useEffect } from 'react';
 
 const getInitialData = () => {
   const data = JSON.parse(localStorage.getItem('todos'));
@@ -18,11 +18,12 @@ function TodoList() {
   }, [todos]);
 
   const removeTask = id => {
-    setTodos(prevTodos => {
-      return prevTodos.filter(todo => {
-        return todo.id !== id;
-      });
-    });
+    // setTodos(prevTodos => {
+    //   return prevTodos.filter(todo => {
+    //     return todo.id !== id;
+    //   });
+    // });
+    console.log('Deleting task');
   };
 
   const toggleTask = id => {
@@ -46,6 +47,10 @@ function TodoList() {
     });
   };
 
+  const editTask = task => {
+    console.log('Editing');
+  };
+
   return (
     <Box
       sx={{
@@ -67,6 +72,7 @@ function TodoList() {
               key={todo.id}
               removeItem={removeTask}
               toggleItem={toggleTask}
+              editItem={editTask}
             />
           );
         })}

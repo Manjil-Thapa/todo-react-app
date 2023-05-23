@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { CssBaseline } from '@mui/material';
-import TodoList from './TodoList';
+import TodoList from './components/TodoList';
 import NavBar from './NavBar';
 
 function App() {

@@ -1,5 +1,5 @@
 import { ListItem, TextField, InputAdornment, IconButton } from '@mui/material';
-import { Create } from '@mui/icons-material';
+import { Create, AddOutlined } from '@mui/icons-material';
 import { useState } from 'react';
 
 function TodoForm({ addTask }) {
@@ -28,7 +28,7 @@ function TodoForm({ addTask }) {
             endAdornment: (
               <InputAdornment position='end'>
                 <IconButton aria-label='create a task' edge='end' type='submit'>
-                  <Create />
+                  <AddOutlined />
                 </IconButton>
               </InputAdornment>
             ),
