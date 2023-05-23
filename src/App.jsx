@@ -2,13 +2,13 @@ import { useState } from 'react';
 import './App.css';
 import { CssBaseline } from '@mui/material';
 import TodoList from './components/TodoList';
-import NavBar from './NavBar';
+import MainDrawer from './components/LeftDrawer';
 
 function App() {
   return (
     <>
       <CssBaseline />
-      <NavBar />
+      <MainDrawer />
       {/* remove default styles */}
       <TodoList />
     </>

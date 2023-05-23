@@ -1,20 +1,20 @@
 import {
+  Button,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   IconButton,
   Checkbox,
+  Dialog,
+  DialogTitle,
+  DialogActions,
   DialogContent,
   DialogContentText,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogActions from '@mui/material/DialogActions';
-import Button from '@mui/material/Button';
 
 function TodoItem({ todo, removeItem, toggleItem, editItem }) {
   const labelId = `checkbox-list-label-${todo.id}`;
@@ -30,8 +30,8 @@ function TodoItem({ todo, removeItem, toggleItem, editItem }) {
   };
 
   const handleDeleteConfirmation = () => {
+    removeItem(todo.id);
     setOpenDeleteDialog(false);
-    removeItem(todo);
   };
 
   const editTask = () => {
@@ -39,7 +39,7 @@ function TodoItem({ todo, removeItem, toggleItem, editItem }) {
   };
   const handleEditConfirmation = () => {
     setOpenEditDialog(false);
-    editItem(todo);
+    editItem(todo.id);
   };
 
   return (
