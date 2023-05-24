@@ -2,7 +2,7 @@ import { ListItem, TextField, InputAdornment, IconButton } from '@mui/material';
 import { Create, AddOutlined } from '@mui/icons-material';
 import { useState } from 'react';
 
-function TodoForm({ addTask }) {
+export default function TodoForm({ addTask }) {
   const [task, setTask] = useState('');
   const handleChange = evt => {
     setTask(evt.target.value);
@@ -38,5 +38,3 @@ function TodoForm({ addTask }) {
     </ListItem>
   );
 }
-
-export default TodoForm;

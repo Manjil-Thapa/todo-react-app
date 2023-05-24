@@ -15,8 +15,9 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
+import Important from './Important';
 
-function TodoItem({ todo, removeItem, toggleItem, editItem }) {
+export default function TodoItem({ todo, removeItem, toggleItem, editItem }) {
   const labelId = `checkbox-list-label-${todo.id}`;
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
@@ -86,7 +87,7 @@ function TodoItem({ todo, removeItem, toggleItem, editItem }) {
         <DialogTitle>Confirm Deletion</DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
-            "{todo.task}" will be permantently deleted.
+            "{todo.task}" will be permanently deleted.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -99,8 +100,7 @@ function TodoItem({ todo, removeItem, toggleItem, editItem }) {
       <IconButton edge='end' aria-label='comments' onClick={removeTask}>
         <DeleteIcon />
       </IconButton>
+      <Important />
     </ListItem>
   );
 }
-
-export default TodoItem;

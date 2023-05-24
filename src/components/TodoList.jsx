@@ -10,7 +10,7 @@ const getInitialData = () => {
   return data;
 };
 
-function TodoList() {
+export default function TodoList() {
   const [todos, setTodos] = useState(getInitialData);
 
   useEffect(() => {
@@ -60,8 +60,14 @@ function TodoList() {
         m: 3,
       }}
     >
+      <Typography
+        variant='h1'
+        component='h2'
+        sx={{ flexGrow: 1, fontSize: 80 }}
+      >
+        All Tasks
+      </Typography>
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-        <TodoForm addTask={addTask} />
         {todos.map(todo => {
           return (
             <TodoItem
@@ -73,9 +79,8 @@ function TodoList() {
             />
           );
         })}
+        <TodoForm addTask={addTask} />
       </List>
     </Box>
   );
 }
-
-export default TodoList;

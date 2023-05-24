@@ -4,15 +4,12 @@ import { CssBaseline } from '@mui/material';
 import TodoList from './components/TodoList';
 import MainDrawer from './components/LeftDrawer';
 
-function App() {
+export default function App() {
   return (
     <>
       <CssBaseline />
       <MainDrawer />
-      {/* remove default styles */}
       <TodoList />
     </>
   );
 }
-
-export default App;
