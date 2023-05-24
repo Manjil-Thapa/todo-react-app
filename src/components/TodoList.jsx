@@ -25,7 +25,7 @@ export default function TodoList() {
     });
   };
 
-  const toggleTask = id => {
+  const toggleCheck = id => {
     setTodos(prevTodos => {
       return prevTodos.map(todo => {
         if (todo.id === id) {
@@ -37,11 +37,27 @@ export default function TodoList() {
     });
   };
 
+  const toggleImportance = id => {
+    setTodos(prevTodos => {
+      return prevTodos.map(todo => {
+        if (todo.id === id) {
+          return { ...todo, isImportant: !todo.isImportant };
+        }
+        return todo;
+      });
+    });
+  };
+
   const addTask = task => {
     setTodos(prevTodos => {
       return [
         ...prevTodos,
-        { id: crypto.randomUUID(), task: task, completed: false },
+        {
+          id: crypto.randomUUID(),
+          task: task,
+          completed: false,
+          isImportant: false,
+        },
       ];
     });
   };
@@ -74,8 +90,9 @@ export default function TodoList() {
               todo={todo}
               key={todo.id}
               removeItem={removeTask}
-              toggleItem={toggleTask}
+              toggleCheck={toggleCheck}
               editItem={editTask}
+              toggleImportance={toggleImportance}
             />
           );
         })}

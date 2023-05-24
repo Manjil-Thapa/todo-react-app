@@ -14,16 +14,23 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { useState } from 'react';
-import Important from './Important';
 
-export default function TodoItem({ todo, removeItem, toggleItem, editItem }) {
+export default function TodoItem({
+  todo,
+  removeItem,
+  editItem,
+  toggleCheck,
+  toggleImportance,
+}) {
   const labelId = `checkbox-list-label-${todo.id}`;
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
 
-  const toggleTask = () => {
-    toggleItem(todo.id);
+  const handleCheck = () => {
+    toggleCheck(todo.id);
   };
 
   const removeTask = () => {
@@ -43,6 +50,10 @@ export default function TodoItem({ todo, removeItem, toggleItem, editItem }) {
     editItem(todo.id);
   };
 
+  const handleImportance = () => {
+    toggleImportance(todo.id);
+  };
+
   return (
     <ListItem disablePadding>
       <ListItemButton role={undefined} dense>
@@ -53,7 +64,7 @@ export default function TodoItem({ todo, removeItem, toggleItem, editItem }) {
             tabIndex={-1}
             disableRipple
             inputProps={{ 'aria-labelledby': labelId }}
-            onChange={toggleTask}
+            onChange={handleCheck}
           />
         </ListItemIcon>
         <ListItemText
@@ -100,7 +111,6 @@ export default function TodoItem({ todo, removeItem, toggleItem, editItem }) {
       <IconButton edge='end' aria-label='comments' onClick={removeTask}>
         <DeleteIcon />
       </IconButton>
-      <Important />
     </ListItem>
   );
 }
