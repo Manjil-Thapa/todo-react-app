@@ -30,9 +30,8 @@ export default function TodoList() {
       return prevTodos.map(todo => {
         if (todo.id === id) {
           return { ...todo, completed: !todo.completed };
-        } else {
-          return todo;
         }
+        return todo;
       });
     });
   };

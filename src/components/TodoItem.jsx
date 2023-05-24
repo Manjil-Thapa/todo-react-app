@@ -15,7 +15,7 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { useState } from 'react';
 
 export default function TodoItem({
@@ -111,6 +111,12 @@ export default function TodoItem({
       <IconButton edge='end' aria-label='comments' onClick={removeTask}>
         <DeleteIcon />
       </IconButton>
+      <Checkbox
+        icon={<StarOutlineIcon />}
+        checkedIcon={<StarIcon style={{ color: 'gold' }} />}
+        checked={todo.isImportant}
+        onChange={handleImportance}
+      />
     </ListItem>
   );
 }
