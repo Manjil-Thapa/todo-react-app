@@ -95,8 +95,10 @@ export default function TodoList() {
             />
           );
         })}
-        <TodoForm addTask={addTask} />
       </List>
+      <Box sx={{ width: '100%', maxWidth: 360 }}>
+        <TodoForm addTask={addTask} />
+      </Box>
     </Box>
   );
 }
