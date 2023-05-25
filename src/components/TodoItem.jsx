@@ -17,7 +17,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { useState } from 'react';
-import RightDrawer from './RightDrawer';
 
 export default function TodoItem({
   todo,

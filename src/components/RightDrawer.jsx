@@ -29,9 +29,6 @@ export default function RightDrawer() {
   const handleFormSubmit = event => {
     event.preventDefault();
 
-    // Perform necessary actions with the updated task data (e.g., update the page, store changes in local storage)
-
-    // Reset the form inputs and close the drawer
     setState({
       ...state,
       taskTitle: '',
