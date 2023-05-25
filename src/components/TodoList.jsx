@@ -3,7 +3,6 @@ import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
 import { Box, Typography } from '@mui/material';
 import { useState, useEffect } from 'react';
-import RightDrawer from './RightDrawer';
 
 const getInitialData = () => {
   const data = JSON.parse(localStorage.getItem('todos'));
@@ -97,10 +96,6 @@ export default function TodoList() {
           );
         })}
       </List>
-      <Box sx={{ width: '100%', maxWidth: 360 }}>
-        <TodoForm addTask={addTask} />
-      </Box>
-      <RightDrawer />
     </Box>
   );
 }

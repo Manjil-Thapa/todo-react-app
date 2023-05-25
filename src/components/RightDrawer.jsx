@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import './RightDrawer.css';
 
 export default function RightDrawer() {
   const [state, setState] = useState({
-    right: true,
+    right: false,
     taskTitle: '',
     taskDescription: '',
   });
@@ -23,6 +26,7 @@ export default function RightDrawer() {
   };
 
   const handleInputChange = event => {
+    event.stopPropagation();
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
@@ -39,12 +43,12 @@ export default function RightDrawer() {
 
   const list = anchor => (
     <Box
-      sx={{ width: 250 }}
+      sx={{ width: 350 }}
       role='presentation'
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className='edit-form'>
         <label>
           Task Title:
           <input
@@ -70,8 +74,14 @@ export default function RightDrawer() {
   );
 
   return (
-    <div>
-      <Button onClick={toggleDrawer('right', true)}>Edit Task</Button>
+    <Box>
+      <IconButton
+        edge='end'
+        aria-label='edit'
+        onClick={toggleDrawer('right', true)}
+      >
+        <EditIcon />
+      </IconButton>
       <Drawer
         anchor='right'
         open={state.right}
@@ -79,6 +89,6 @@ export default function RightDrawer() {
       >
         {list('right')}
       </Drawer>
-    </div>
+    </Box>
   );
 }

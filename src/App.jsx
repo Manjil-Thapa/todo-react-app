@@ -2,6 +2,8 @@ import { CssBaseline } from '@mui/material';
 import TodoList from './components/TodoList';
 import MainDrawer from './components/MainDrawer';
 import Box from '@mui/material/Box';
+import TodoForm from './components/TodoForm';
+import './App.css';
 
 export default function App() {
   return (
@@ -10,6 +12,9 @@ export default function App() {
       <MainDrawer />
       <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
         <TodoList />
+      </Box>
+      <Box>
+        <TodoForm />
       </Box>
     </Box>
   );

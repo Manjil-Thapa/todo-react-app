@@ -17,6 +17,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { useState } from 'react';
+import RightDrawer from './RightDrawer';
 
 export default function TodoItem({
   todo,
@@ -27,7 +28,7 @@ export default function TodoItem({
 }) {
   const labelId = `checkbox-list-label-${todo.id}`;
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
-  const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleCheck = () => {
     toggleCheck(todo.id);
@@ -42,16 +43,12 @@ export default function TodoItem({
     setOpenDeleteDialog(false);
   };
 
-  const editTask = () => {
-    setOpenEditDialog(true);
-  };
-  const handleEditConfirmation = () => {
-    setOpenEditDialog(false);
-    editItem(todo.id);
-  };
-
   const handleImportance = () => {
     toggleImportance(todo.id);
+  };
+
+  const toggleEditDrawer = () => {
+    setOpenDrawer(!openDrawer);
   };
 
   return (
@@ -74,23 +71,6 @@ export default function TodoItem({
           sx={{ color: 'blue' }}
         />
       </ListItemButton>
-      <Dialog open={openEditDialog} onClose={() => setOpenEditDialog(false)}>
-        <DialogTitle>Edit Task</DialogTitle>
-        <DialogContent>
-          <DialogContentText id='alert-dialog-description'>
-            {todo.task}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenEditDialog(false)}>Cancel</Button>
-          <Button onClick={handleEditConfirmation} color='primary'>
-            Save
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <IconButton edge='end' aria-label='edit' onClick={editTask}>
-        <EditIcon />
-      </IconButton>
       <Dialog
         open={openDeleteDialog}
         onClose={() => setOpenDeleteDialog(false)}
@@ -116,6 +96,12 @@ export default function TodoItem({
         checkedIcon={<StarIcon style={{ color: 'gold' }} />}
         checked={todo.isImportant}
         onChange={handleImportance}
+      />
+      <RightDrawer
+        open={openDrawer}
+        toggleDrawer={toggleEditDrawer}
+        todo={todo}
+        editItem={editItem}
       />
     </ListItem>
   );
