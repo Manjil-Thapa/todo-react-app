@@ -48,6 +48,7 @@ export default function TodoList() {
   };
 
   const addTask = task => {
+    if (task === '') return;
     setTodos(prevTodos => {
       return [
         ...prevTodos,

@@ -6,6 +6,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import './RightDrawer.css';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { DatePicker } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 export default function RightDrawer({ todo, editTask, toggleImportance }) {
   const [state, setState] = useState({
@@ -13,6 +16,8 @@ export default function RightDrawer({ todo, editTask, toggleImportance }) {
     taskTitle: todo.task,
     taskDescription: '',
   });
+
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const toggleDrawer = (anchor, open) => event => {
     if (
@@ -63,6 +68,14 @@ export default function RightDrawer({ todo, editTask, toggleImportance }) {
       >
         <TextField id='task' label={todo.task} />
         <TextField id='note' label='Add note' multiline minRows={5} />
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DatePicker
+            label='Select Date'
+            value={selectedDate}
+            onChange={newValue => setSelectedDate(newValue)}
+            renderInput={params => <TextField {...params} />}
+          />
+        </LocalizationProvider>
         <Typography style={{ marginTop: 'auto' }}>
           Created on {todo.time}
         </Typography>
