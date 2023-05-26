@@ -13,6 +13,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 
 const drawerWidth = 300;
 
@@ -25,9 +26,8 @@ export default function MainDrawer() {
         sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}
       >
         <Toolbar>
-          <Typography variant='h6' noWrap component='div'>
-            To-Do Application
-          </Typography>
+          <ChecklistIcon />
+          <h2>To-Do Application</h2>
         </Toolbar>
       </AppBar>
       <Drawer

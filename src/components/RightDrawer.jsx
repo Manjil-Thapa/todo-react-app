@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import './RightDrawer.css';
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
-export default function RightDrawer({ todo, editTask }) {
+export default function RightDrawer({ todo, editTask, toggleImportance }) {
   const [state, setState] = useState({
     right: false,
-    taskTitle: '',
+    taskTitle: todo.task,
     taskDescription: '',
   });
 
@@ -43,35 +43,30 @@ export default function RightDrawer({ todo, editTask }) {
   };
 
   const list = anchor => (
-    <Box sx={{ width: 350 }} role='presentation'>
-      <form
-        onClick={event => event.stopPropagation()} // Add event handler to stop event propagation
-        onSubmit={handleFormSubmit}
-        className='edit-form'
+    <Box
+      component='form'
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '30ch' },
+      }}
+      noValidate
+      autoComplete='off'
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          paddingTop: '100px',
+        }}
       >
-        <label>
-          Task Title:
-          <input
-            type='text'
-            name='taskTitle'
-            value={state.taskTitle}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Task Description:
-          <textarea
-            name='taskDescription'
-            value={state.taskDescription}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <Button type='submit'>Update Task</Button>
-        <h4>Created on May 26</h4>
-        <TextField id='filled-basic' label='Task Title' variant='filled' />
-      </form>
+        <TextField id='task' label={todo.task} />
+        <TextField id='note' label='Add note' multiline minRows={5} />
+        <Typography style={{ marginTop: 'auto' }}>
+          Created on {todo.time}
+        </Typography>
+      </div>
     </Box>
   );
 

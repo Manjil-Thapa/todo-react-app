@@ -11,10 +11,8 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  Divider,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { useState } from 'react';
@@ -104,6 +102,7 @@ export default function TodoItem({
         toggleDrawer={toggleEditDrawer}
         todo={todo}
         editItem={editItem}
+        toggleImportance={toggleImportance}
       />
     </ListItem>
   );
