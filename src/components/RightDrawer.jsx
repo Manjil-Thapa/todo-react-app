@@ -5,8 +5,9 @@ import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import './RightDrawer.css';
+import TextField from '@mui/material/TextField';
 
-export default function RightDrawer() {
+export default function RightDrawer({ todo, editTask }) {
   const [state, setState] = useState({
     right: false,
     taskTitle: '',
@@ -42,13 +43,12 @@ export default function RightDrawer() {
   };
 
   const list = anchor => (
-    <Box
-      sx={{ width: 350 }}
-      role='presentation'
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <form onSubmit={handleFormSubmit} className='edit-form'>
+    <Box sx={{ width: 350 }} role='presentation'>
+      <form
+        onClick={event => event.stopPropagation()} // Add event handler to stop event propagation
+        onSubmit={handleFormSubmit}
+        className='edit-form'
+      >
         <label>
           Task Title:
           <input
@@ -69,6 +69,8 @@ export default function RightDrawer() {
         </label>
         <br />
         <Button type='submit'>Update Task</Button>
+        <h4>Created on May 26</h4>
+        <TextField id='filled-basic' label='Task Title' variant='filled' />
       </form>
     </Box>
   );

@@ -11,6 +11,7 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
+  Divider,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -71,6 +72,7 @@ export default function TodoItem({
           sx={{ color: 'blue' }}
         />
       </ListItemButton>
+      <h4 style={{ color: 'gray', fontSize: '10px' }}>{todo.time}</h4>
       <Dialog
         open={openDeleteDialog}
         onClose={() => setOpenDeleteDialog(false)}

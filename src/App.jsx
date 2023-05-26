@@ -13,9 +13,6 @@ export default function App() {
       <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
         <TodoList />
       </Box>
-      <Box>
-        <TodoForm />
-      </Box>
     </Box>
   );
 }

@@ -1,5 +1,5 @@
 import { ListItem, TextField, InputAdornment, IconButton } from '@mui/material';
-import { Create, AddOutlined } from '@mui/icons-material';
+import { AddOutlined } from '@mui/icons-material';
 import { useState } from 'react';
 
 export default function TodoForm({ addTask }) {
@@ -24,6 +24,7 @@ export default function TodoForm({ addTask }) {
           variant='outlined'
           onChange={handleChange}
           value={task}
+          sx={{ display: 'flex', padding: 'none' }}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>

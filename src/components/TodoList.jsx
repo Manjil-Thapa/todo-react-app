@@ -1,7 +1,7 @@
 import List from '@mui/material/List';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
-import { Box, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import { useState, useEffect } from 'react';
 
 const getInitialData = () => {
@@ -56,6 +56,7 @@ export default function TodoList() {
           task: task,
           completed: false,
           isImportant: false,
+          time: new Date().toDateString(),
         },
       ];
     });
@@ -82,20 +83,25 @@ export default function TodoList() {
       >
         All Tasks
       </Typography>
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <List sx={{ width: '100%', minWidth: 600, bgcolor: 'background.paper' }}>
+        <Divider />
         {todos.map(todo => {
           return (
-            <TodoItem
-              todo={todo}
-              key={todo.id}
-              removeItem={removeTask}
-              toggleCheck={toggleCheck}
-              editItem={editTask}
-              toggleImportance={toggleImportance}
-            />
+            <>
+              <TodoItem
+                todo={todo}
+                key={todo.id}
+                removeItem={removeTask}
+                toggleCheck={toggleCheck}
+                editItem={editTask}
+                toggleImportance={toggleImportance}
+              />
+              <Divider />
+            </>
           );
         })}
       </List>
+      <TodoForm addTask={addTask} />
     </Box>
   );
 }
