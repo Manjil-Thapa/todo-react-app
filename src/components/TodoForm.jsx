@@ -47,29 +47,5 @@ export default function TodoForm({ addTask, error }) {
         }}
       />
     </Box>
-
-    // <TextField
-    //   id='addTask'
-    //   label='Add a new task'
-    //   placeholder='e.g. Pick up birthday present'
-    //   variant='outlined'
-    //   onChange={handleChange}
-    //   value={task}
-    //   sx={{ display: 'flex', padding: 'none' }}
-    //   InputProps={{
-    //     endAdornment: (
-    //       <InputAdornment position='end'>
-    //         <IconButton
-    //           aria-label='create a task'
-    //           edge='end'
-    //           type='submit'
-    //           onSubmit={handleSubmit}
-    //         >
-    //           <AddOutlined />
-    //         </IconButton>
-    //       </InputAdornment>
-    //     ),
-    //   }}
-    // />
   );
 }
