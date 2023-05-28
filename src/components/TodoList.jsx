@@ -63,6 +63,7 @@ export default function TodoList() {
           completed: false,
           isImportant: false,
           time: new Date().toDateString().slice(3),
+          note: '',
         },
       ];
     });

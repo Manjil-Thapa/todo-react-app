@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
@@ -16,8 +16,13 @@ export default function RightDrawer({ todo, editItem }) {
     taskTitle: todo.task,
     taskDescription: '',
   });
-
   const [selectedDate, setSelectedDate] = useState(null);
+  const [note, setNote] = useState(todo.note || '');
+
+  useEffect(() => {
+    const updatedTodo = { ...todo, note };
+    editItem(updatedTodo);
+  }, [note, editItem, todo]);
 
   const toggleDrawer = (anchor, open) => event => {
     if (
@@ -39,18 +44,12 @@ export default function RightDrawer({ todo, editItem }) {
 
   const handleInputChange = event => {
     event.stopPropagation();
-    setState({ ...state, [event.target.name]: event.target.value });
-  };
-
-  const handleFormSubmit = event => {
-    event.preventDefault();
-
-    setState({
-      ...state,
-      taskTitle: '',
-      taskDescription: '',
-      right: false,
-    });
+    const { name, value } = event.target;
+    if (name === 'task') {
+      setState({ ...state, taskTitle: value });
+    } else if (name === 'note') {
+      setNote(value);
+    }
   };
 
   const list = anchor => (
@@ -73,7 +72,15 @@ export default function RightDrawer({ todo, editItem }) {
         }}
       >
         <TextField id='task' label={todo.task} onChange={handleEditChange} />
-        <TextField id='note' label='Add note' multiline minRows={5} />
+        <TextField
+          id='note'
+          label={todo.note ? todo.note : 'Add note'}
+          multiline
+          minRows={5}
+          name='note'
+          value={note}
+          onChange={handleInputChange}
+        />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
             label='Add a due date'
