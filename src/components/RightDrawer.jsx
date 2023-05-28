@@ -3,14 +3,13 @@ import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import './RightDrawer.css';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { DatePicker } from '@mui/lab';
+import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import './RightDrawer.css';
 
-export default function RightDrawer({ todo, editTask, toggleImportance }) {
+export default function RightDrawer({ todo, editItem, toggleImportance }) {
   const [state, setState] = useState({
     right: false,
     taskTitle: todo.task,
@@ -76,7 +75,7 @@ export default function RightDrawer({ todo, editTask, toggleImportance }) {
             renderInput={params => <TextField {...params} />}
           />
         </LocalizationProvider>
-        <Typography style={{ marginTop: 'auto' }}>
+        <Typography style={{ marginTop: 'auto', opacity: '0.8' }}>
           Created on {todo.time}
         </Typography>
       </div>

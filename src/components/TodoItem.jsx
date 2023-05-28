@@ -71,6 +71,13 @@ export default function TodoItem({
         />
       </ListItemButton>
       <h4 style={{ color: 'gray', fontSize: '10px' }}>{todo.time}</h4>
+      <RightDrawer
+        open={openDrawer}
+        toggleDrawer={toggleEditDrawer}
+        todo={todo}
+        editItem={editItem}
+        toggleImportance={toggleImportance}
+      />
       <Dialog
         open={openDeleteDialog}
         onClose={() => setOpenDeleteDialog(false)}
@@ -96,13 +103,6 @@ export default function TodoItem({
         checkedIcon={<StarIcon style={{ color: 'gold' }} />}
         checked={todo.isImportant}
         onChange={handleImportance}
-      />
-      <RightDrawer
-        open={openDrawer}
-        toggleDrawer={toggleEditDrawer}
-        todo={todo}
-        editItem={editItem}
-        toggleImportance={toggleImportance}
       />
     </ListItem>
   );
