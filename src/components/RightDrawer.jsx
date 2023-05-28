@@ -5,11 +5,12 @@ import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { DatePicker, LocalizationProvider } from '@mui/lab';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import './RightDrawer.css';
 
-export default function RightDrawer({ todo, editItem, toggleImportance }) {
+export default function RightDrawer({ todo, editItem }) {
   const [state, setState] = useState({
     right: false,
     taskTitle: todo.task,
@@ -28,6 +29,12 @@ export default function RightDrawer({ todo, editItem, toggleImportance }) {
     }
 
     setState({ ...state, [anchor]: open });
+  };
+
+  const handleEditChange = event => {
+    event.stopPropagation();
+    const updatedTask = { ...todo, task: event.target.value };
+    editItem(updatedTask);
   };
 
   const handleInputChange = event => {
@@ -65,14 +72,14 @@ export default function RightDrawer({ todo, editItem, toggleImportance }) {
           paddingTop: '100px',
         }}
       >
-        <TextField id='task' label={todo.task} />
+        <TextField id='task' label={todo.task} onChange={handleEditChange} />
         <TextField id='note' label='Add note' multiline minRows={5} />
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
-            label='Select Date'
+            label='Add a due date'
             value={selectedDate}
             onChange={newValue => setSelectedDate(newValue)}
-            renderInput={params => <TextField {...params} />}
+            slotProps={{ textField: { variant: 'outlined' } }}
           />
         </LocalizationProvider>
         <Typography style={{ marginTop: 'auto', opacity: '0.8' }}>

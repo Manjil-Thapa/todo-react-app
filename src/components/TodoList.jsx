@@ -3,6 +3,7 @@ import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
 import { Box, Divider, Typography } from '@mui/material';
 import { useState, useEffect } from 'react';
+import React from 'react';
 
 const getInitialData = () => {
   const data = JSON.parse(localStorage.getItem('todos'));
@@ -67,8 +68,12 @@ export default function TodoList() {
     });
   };
 
-  const editTask = task => {
-    console.log('Editing');
+  const editTask = updatedTask => {
+    setTodos(prevTodos =>
+      prevTodos.map(todoItem =>
+        todoItem.id === updatedTask.id ? updatedTask : todoItem
+      )
+    );
   };
 
   return (
@@ -92,17 +97,16 @@ export default function TodoList() {
         <Divider />
         {todos.map(todo => {
           return (
-            <>
+            <React.Fragment key={todo.id}>
               <TodoItem
                 todo={todo}
-                key={todo.id}
                 removeItem={removeTask}
                 toggleCheck={toggleCheck}
                 editItem={editTask}
                 toggleImportance={toggleImportance}
               />
               <Divider />
-            </>
+            </React.Fragment>
           );
         })}
       </List>
