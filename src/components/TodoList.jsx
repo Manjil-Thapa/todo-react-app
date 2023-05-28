@@ -13,6 +13,8 @@ const getInitialData = () => {
 export default function TodoList() {
   const [todos, setTodos] = useState(getInitialData);
 
+  const [error, setError] = useState(false);
+
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
@@ -48,7 +50,9 @@ export default function TodoList() {
   };
 
   const addTask = task => {
-    if (task === '') return;
+    if (task.trim() === '') {
+      return setError(true);
+    }
     setTodos(prevTodos => {
       return [
         ...prevTodos,
@@ -57,7 +61,7 @@ export default function TodoList() {
           task: task,
           completed: false,
           isImportant: false,
-          time: new Date().toDateString(),
+          time: new Date().toDateString().slice(3),
         },
       ];
     });

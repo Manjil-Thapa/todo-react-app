@@ -2,7 +2,7 @@ import { TextField, InputAdornment, IconButton, Box } from '@mui/material';
 import { AddOutlined } from '@mui/icons-material';
 import { useState } from 'react';
 
-export default function TodoForm({ addTask }) {
+export default function TodoForm({ addTask, error }) {
   const [task, setTask] = useState('');
 
   const handleChange = event => {
