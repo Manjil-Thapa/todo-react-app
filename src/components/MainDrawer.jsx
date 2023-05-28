@@ -5,7 +5,6 @@ import AppBar from '@mui/material/AppBar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -14,6 +13,8 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import ChecklistIcon from '@mui/icons-material/Checklist';
+import { TextField, InputAdornment, IconButton } from '@mui/material';
+import { AddOutlined } from '@mui/icons-material';
 
 const drawerWidth = 300;
 
@@ -42,7 +43,7 @@ export default function MainDrawer() {
         }}
       >
         <Toolbar />
-        <Box sx={{ overflow: 'auto' }}>
+        <Box sx={{ height: 'calc(100% - 56px)', overflow: 'auto', padding: 2 }}>
           <List>
             {['All Tasks', 'Important', 'Today', 'Week'].map((text, index) => (
               <ListItem key={text} disablePadding>
@@ -68,6 +69,24 @@ export default function MainDrawer() {
               </ListItem>
             ))}
           </List>
+        </Box>
+        <Box sx={{ p: 2 }}>
+          <TextField
+            placeholder='Create new list'
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position='end'>
+                  <IconButton
+                    aria-label='create a task'
+                    edge='end'
+                    type='submit'
+                  >
+                    <AddOutlined />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
         </Box>
       </Drawer>
       <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
