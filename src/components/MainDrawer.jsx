@@ -15,6 +15,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import { TextField, InputAdornment, IconButton } from '@mui/material';
 import { AddOutlined } from '@mui/icons-material';
+import Typography from '@mui/material/Typography';
 
 const drawerWidth = 300;
 
@@ -28,7 +29,9 @@ export default function MainDrawer() {
       >
         <Toolbar>
           <ChecklistIcon />
-          <h2>To-Do Application</h2>
+          <Typography variant='h4' component='h1'>
+            TO-DO
+          </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
