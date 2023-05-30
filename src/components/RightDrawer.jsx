@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Drawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
-import { IconButton } from '@mui/material';
+import { TextField, Typography, IconButton, Box, Drawer } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import './RightDrawer.css';
 
 export default function RightDrawer({ todo, editItem }) {
@@ -36,13 +29,13 @@ export default function RightDrawer({ todo, editItem }) {
     setState({ ...state, [anchor]: open });
   };
 
-  const handleEditChange = event => {
+  const handleTaskChange = event => {
     event.stopPropagation();
     const updatedTask = { ...todo, task: event.target.value };
     editItem(updatedTask);
   };
 
-  const handleInputChange = event => {
+  const handleNoteChange = event => {
     event.stopPropagation();
     const { name, value } = event.target;
     if (name === 'task') {
@@ -50,6 +43,11 @@ export default function RightDrawer({ todo, editItem }) {
     } else if (name === 'note') {
       setNote(value);
     }
+  };
+
+  const handleDateChange = event => {
+    event.stopPropagation();
+    console.log('date selected');
   };
 
   const list = anchor => (
@@ -71,26 +69,24 @@ export default function RightDrawer({ todo, editItem }) {
           paddingTop: '100px',
         }}
       >
-        <TextField id='task' label={todo.task} onChange={handleEditChange} />
+        <TextField
+          id='task'
+          label={todo.task}
+          onChange={handleTaskChange}
+          value={todo.task}
+        />
         <TextField
           id='note'
           label={todo.note ? todo.note : 'Add note'}
           multiline
           minRows={5}
           name='note'
-          value={note}
-          onChange={handleInputChange}
+          value={todo.note}
+          onChange={handleNoteChange}
         />
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
-            label='Add a due date'
-            value={selectedDate}
-            onChange={newValue => setSelectedDate(newValue)}
-            slotProps={{ textField: { variant: 'outlined' } }}
-          />
-        </LocalizationProvider>
+
         <Typography style={{ marginTop: 'auto', opacity: '0.8' }}>
-          Created on {todo.time}
+          Created on{todo.dateCreated}
         </Typography>
       </div>
     </Box>

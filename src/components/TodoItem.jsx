@@ -6,6 +6,7 @@ import {
   ListItemText,
   IconButton,
   Checkbox,
+  Typography,
   Dialog,
   DialogTitle,
   DialogActions,
@@ -17,7 +18,6 @@ import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { useState } from 'react';
 import RightDrawer from './RightDrawer';
-import Typography from '@mui/material/Typography';
 
 export default function TodoItem({
   todo,

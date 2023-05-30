@@ -1,9 +1,8 @@
-import List from '@mui/material/List';
-import TodoItem from './TodoItem';
-import TodoForm from './TodoForm';
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Divider, Typography, List } from '@mui/material';
 import { useState, useEffect } from 'react';
 import React from 'react';
+import TodoItem from './TodoItem';
+import TodoForm from './TodoForm';
 
 const getInitialData = () => {
   const data = JSON.parse(localStorage.getItem('todos'));
@@ -62,8 +61,9 @@ export default function TodoList() {
           task: task,
           completed: false,
           isImportant: false,
-          time: new Date().toDateString().slice(3),
+          dateCreated: new Date().toDateString().slice(3),
           note: '',
+          due: null,
         },
       ];
     });
