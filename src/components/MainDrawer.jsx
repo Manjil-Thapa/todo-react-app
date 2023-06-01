@@ -20,10 +20,13 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import { AddOutlined } from '@mui/icons-material';
+import { useState } from 'react';
 
 const drawerWidth = 300;
 
 export default function MainDrawer() {
+  const [list, setList] = useState('');
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
