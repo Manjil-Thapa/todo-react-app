@@ -18,7 +18,7 @@ import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { useState } from 'react';
 import EditDrawer from './EditDrawer';
-import ShowInfoDrawer from './ShowInfoDrawer';
+import ShowInfoDialog from './ShowInfoDialog';
 
 export default function TodoItem({
   todo,
@@ -30,7 +30,7 @@ export default function TodoItem({
   const labelId = `checkbox-list-label-${todo.id}`;
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [showInfoDrawer, setShowInfoDrawer] = useState(false);
+  const [openShowDialog, setOpenShowDialog] = useState(false);
 
   const handleCheck = () => {
     toggleCheck(todo.id);
@@ -53,8 +53,8 @@ export default function TodoItem({
     setOpenDrawer(!openDrawer);
   };
 
-  const handleShowInfo = () => {
-    console.log('showing item');
+  const toggleInfoDrawer = () => {
+    setOpenShowDialog(!openShowDialog);
   };
 
   return (
@@ -76,7 +76,7 @@ export default function TodoItem({
             primary={todo.task}
             style={{ textDecoration: todo.completed && 'line-through' }}
             sx={{ color: 'blue' }}
-            onClick={handleShowInfo}
+            onClick={toggleInfoDrawer}
           />
         </ListItemButton>
         <h4 style={{ color: 'gray', fontSize: '10px' }}>{todo.time}</h4>
@@ -87,6 +87,7 @@ export default function TodoItem({
           editItem={editItem}
           toggleImportance={toggleImportance}
         />
+        <ShowInfoDialog />
         <Dialog
           open={openDeleteDialog}
           onClose={() => setOpenDeleteDialog(false)}
