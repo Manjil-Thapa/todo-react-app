@@ -52,7 +52,7 @@ export default function TodoItem({
     setOpenDrawer(!openDrawer);
   };
 
-  const toggleInfoDrawer = () => {
+  const toggleInfoDialog = () => {
     setOpenShowDialog(true);
   };
 
@@ -75,7 +75,7 @@ export default function TodoItem({
             primary={todo.task}
             style={{ textDecoration: todo.completed && 'line-through' }}
             sx={{ color: 'blue' }}
-            onClick={toggleInfoDrawer}
+            onClick={toggleInfoDialog}
           />
         </ListItemButton>
 
