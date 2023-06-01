@@ -91,10 +91,10 @@ export default function TodoItem({
                 Title: {todo.task}
               </Typography>
               <Typography variant='h6' component='h3'>
-                Description: {todo.note ? todo.note : 'N/A'}
+                Description: {todo.note ? todo.note : ''}
               </Typography>
               <Typography variant='h6' component='h3'>
-                Due date: {todo.due ? todo.due : 'N/A'}
+                Due date: {todo.due ? todo.due : ''}
               </Typography>
               <Typography variant='h6' component='h3'>
                 Project list: Work in progress
