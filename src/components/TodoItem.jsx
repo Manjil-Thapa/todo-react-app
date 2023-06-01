@@ -17,7 +17,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { useState } from 'react';
-import RightDrawer from './RightDrawer';
+import EditDrawer from './EditDrawer';
+import ShowInfoDrawer from './ShowInfoDrawer';
 
 export default function TodoItem({
   todo,
@@ -29,6 +30,7 @@ export default function TodoItem({
   const labelId = `checkbox-list-label-${todo.id}`;
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [showInfoDrawer, setShowInfoDrawer] = useState(false);
 
   const handleCheck = () => {
     toggleCheck(todo.id);
@@ -51,6 +53,10 @@ export default function TodoItem({
     setOpenDrawer(!openDrawer);
   };
 
+  const handleShowInfo = () => {
+    console.log('showing item');
+  };
+
   return (
     <>
       <ListItem disablePadding>
@@ -70,10 +76,11 @@ export default function TodoItem({
             primary={todo.task}
             style={{ textDecoration: todo.completed && 'line-through' }}
             sx={{ color: 'blue' }}
+            onClick={handleShowInfo}
           />
         </ListItemButton>
         <h4 style={{ color: 'gray', fontSize: '10px' }}>{todo.time}</h4>
-        <RightDrawer
+        <EditDrawer
           open={openDrawer}
           toggleDrawer={toggleEditDrawer}
           todo={todo}
