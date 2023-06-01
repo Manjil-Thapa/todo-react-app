@@ -18,7 +18,6 @@ import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import { useState } from 'react';
 import EditDrawer from './EditDrawer';
-import ShowInfoDialog from './ShowInfoDialog';
 
 export default function TodoItem({
   todo,
@@ -54,7 +53,7 @@ export default function TodoItem({
   };
 
   const toggleInfoDrawer = () => {
-    setOpenShowDialog(!openShowDialog);
+    setOpenShowDialog(true);
   };
 
   return (
@@ -79,7 +78,34 @@ export default function TodoItem({
             onClick={toggleInfoDrawer}
           />
         </ListItemButton>
-        <h4 style={{ color: 'gray', fontSize: '10px' }}>{todo.time}</h4>
+
+        <Typography style={{ color: 'gray', fontSize: '10px' }}>
+          {todo.time}
+        </Typography>
+
+        <Dialog open={openShowDialog} onClose={() => setOpenShowDialog(false)}>
+          <DialogTitle>Task Information</DialogTitle>
+          <DialogContent>
+            <DialogContentText id='alert-dialog-description'>
+              <Typography variant='h5' component='h3'>
+                Title: {todo.task}
+              </Typography>
+              <Typography variant='h6' component='h3'>
+                Description: {todo.note ? todo.note : 'N/A'}
+              </Typography>
+              <Typography variant='h6' component='h3'>
+                Due date: {todo.due ? todo.due : 'N/A'}
+              </Typography>
+              <Typography variant='h6' component='h3'>
+                Project list: Work in progress
+              </Typography>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpenShowDialog(false)}>Cancel</Button>
+          </DialogActions>
+        </Dialog>
+
         <EditDrawer
           open={openDrawer}
           toggleDrawer={toggleEditDrawer}
@@ -87,7 +113,7 @@ export default function TodoItem({
           editItem={editItem}
           toggleImportance={toggleImportance}
         />
-        <ShowInfoDialog />
+
         <Dialog
           open={openDeleteDialog}
           onClose={() => setOpenDeleteDialog(false)}
@@ -108,6 +134,7 @@ export default function TodoItem({
         <IconButton edge='end' aria-label='comments' onClick={removeTask}>
           <DeleteIcon />
         </IconButton>
+
         <Checkbox
           icon={<StarOutlineIcon />}
           checkedIcon={<StarIcon style={{ color: 'gold' }} />}
@@ -115,7 +142,7 @@ export default function TodoItem({
           onChange={handleImportance}
         />
       </ListItem>
-      <Typography>Due: 28 Jun 2023</Typography>
+      <Typography>{todo.dateCreated}</Typography>
     </>
   );
 }
